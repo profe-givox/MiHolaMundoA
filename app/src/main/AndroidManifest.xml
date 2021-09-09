@@ -23,7 +23,12 @@
         <activity
             android:exported="true"
             android:name=".SecondActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"></action>
+                <action android:name="net.ivanvega.intent.ACTION_SECONDACTIVITY"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:mimeType="text/plain>"></data>
+            </intent-filter>
         </activity>
     </application>
 

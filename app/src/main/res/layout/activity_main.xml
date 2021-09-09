@@ -10,9 +10,9 @@
         android:id="@+id/btnInvocarActivityResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="44dp"
         android:onClick="btnInvActResult_click"
         android:text="Invocar otra actividad"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +64,17 @@
         android:text="Invocar otra actividad"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogCat" />
+
+    <Button
+        android:id="@+id/btnIE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="132dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginTop="52dp"
+        android:text="Intent Implicito"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInvocarActivityResult" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
