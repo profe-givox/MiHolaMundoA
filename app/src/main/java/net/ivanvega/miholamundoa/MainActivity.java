@@ -23,6 +23,17 @@ public class MainActivity extends AppCompatActivity {
     EditText txtCajaTexto;
     Button btn, btnInvAct, btnIntentExplicito;
 
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(
+            new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri uri) {
+                    // Handle the returned Uri
+                    Toast.makeText(getApplicationContext(),
+                            uri.toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+
 
     ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -84,16 +95,38 @@ public class MainActivity extends AppCompatActivity {
            //intent.setData(Uri.parse("https://developer.android.com"));
            //intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
 
-            // Map point based on address
-            Uri location =
-                    Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
-// Or map point based on latitude/longitude
-// Uri location = Uri.parse("geo:37.422219,-122.08364?z=14"); // z param is zoom level
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+//            // Map point based on address
+//            Uri location =
+//                    Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
+//// Or map point based on latitude/longitude
+//// Uri location = Uri.parse("geo:37.422219,-122.08364?z=14"); // z param is zoom level
+//            Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
 
 
             //startActivity(intent);
-            startActivity(mapIntent);
+//            startActivity(mapIntent);
+
+            /*
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            // The intent does not have a URI, so declare the "text/plain" MIME type
+            emailIntent.setType("text/plain");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {"jan@example.com"}); // recipients
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email subject");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message text");
+
+            // You can also attach multiple items by passing an ArrayList of Uris
+
+            startActivity(emailIntent);*/
+
+            /*
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "Mensaje");
+
+            startActivity(intent);*/
+
+                mGetContent.launch("image/*");
+
 
         });
     }
@@ -144,17 +177,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==1000){
-            if(resultCode==RESULT_OK){
-                Toast.makeText(MainActivity.this,
-                        data.getStringExtra("token"),
-                        Toast.LENGTH_LONG).show();
-            }
-        }
-
-    }
 }
